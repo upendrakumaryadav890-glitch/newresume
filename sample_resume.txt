@@ -1,0 +1,61 @@
+JOHN SMITH
+john.smith@email.com | (555) 123-4567 | San Francisco, CA
+linkedin.com/in/johnsmith | github.com/johnsmith
+
+PROFESSIONAL SUMMARY
+Experienced Software Engineer with 5+ years of experience in full-stack development. 
+Proficient in Python, JavaScript, and cloud technologies. Strong background in building 
+scalable web applications and microservices architecture. Excellent problem-solving skills 
+and ability to work in collaborative team environments.
+
+TECHNICAL SKILLS
+Languages: Python, JavaScript, TypeScript, SQL, Java
+Frameworks: React, Django, Flask, Node.js, Express.js
+Cloud & DevOps: AWS, Docker, Kubernetes, Jenkins, CI/CD
+Tools: Git, PostgreSQL, MongoDB, Redis, Docker
+
+PROFESSIONAL EXPERIENCE
+
+Senior Software Engineer - TechCorp Inc.
+January 2022 - Present
+- Led development of microservices architecture using Python and Django
+- Built and deployed scalable applications on AWS using Docker and Kubernetes
+- Mentored junior developers and conducted code reviews
+- Implemented CI/CD pipelines reducing deployment time by 40%
+- Collaborated with product team to define technical requirements
+
+Software Engineer - StartupXYZ
+June 2019 - December 2021
+- Developed full-stack web applications using React and Node.js
+- Designed and implemented RESTful APIs using Python and Flask
+- Managed PostgreSQL and MongoDB databases
+- Participated in agile development and sprint planning
+- Reduced application latency by 30% through performance optimization
+
+Junior Developer - WebAgency
+August 2018 - May 2019
+- Built responsive web pages using HTML, CSS, and JavaScript
+- Assisted in backend development using Python and Django
+- Collaborated with design team to implement UI/UX designs
+- Maintained and improved existing web applications
+
+PROJECTS
+E-commerce Platform
+- Built a full-stack e-commerce application using React, Node.js, and MongoDB
+- Implemented payment processing with Stripe integration
+- Technologies: React, Node.js, Express.js, MongoDB, Stripe
+
+Data Analytics Dashboard
+- Created real-time analytics dashboard using Python, Pandas, and Plotly
+- Integrated with multiple data sources for comprehensive insights
+- Technologies: Python, Pandas, NumPy, Plotly, Docker
+
+EDUCATION
+Bachelor of Science in Computer Science
+University of California, Berkeley
+Graduated: May 2018
+GPA: 3.7
+
+CERTIFICATIONS
+AWS Solutions Architect Associate
+Google Cloud Professional Data Engineer

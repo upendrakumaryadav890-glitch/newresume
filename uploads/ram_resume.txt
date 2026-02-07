@@ -1,0 +1,33 @@
+ Ram Kumar
+Role: Data Scientist | Location: Salem, Tamil Nadu, India
+
+Contact: ram.kumar@email.com | LinkedIn: linkedin.com/in/ramdata
+
+Professional Summary Analytical and detail-oriented Data Scientist with 3+ years of experience in developing machine learning models and data-driven solutions. Proven track record in predictive modeling, NLP, and statistical analysis to drive business growth. Skilled in Python, SQL, and Deep Learning frameworks.
+Technical Skills (Project Testing Keywords) * Programming: Python (Pandas, Scikit-learn, NumPy), R, SQL.
+Machine Learning: Regression, Random Forest, XGBoost, Clustering.
+
+Deep Learning: TensorFlow, PyTorch, Neural Networks.
+
+Data Visualization: Tableau, Power BI, Matplotlib.
+
+Big Data & Cloud: Apache Spark, AWS (S3, SageMaker), Docker.
+
+Tools: Git, Jupyter Notebooks, VS Code, Kilo Code.
+
+Work Experience Senior Data Analyst | TechSolutions Corp January 2023 – Present * Developed a predictive maintenance model using XGBoost, reducing equipment downtime by 15%.
+Automated data pre-processing pipelines, including Data Cleaning (handling missing values) and Data Transformation (One-Hot Encoding and Normalization).
+
+Collaborated with cross-functional teams to deploy ML models into production using AWS SageMaker.
+
+Junior Data Scientist | DataLogic Systems June 2021 – December 2022 * Conducted Exploratory Data Analysis (EDA) on large-scale datasets to identify consumer trends.
+
+Built a Sentiment Analysis tool using Natural Language Processing (NLP) to analyze customer feedback.
+
+Optimized SQL queries to reduce data retrieval time by 30%.
+
+Education * Master of Science in Data Science | Anna University | 2021.
+Bachelor of Technology (B.Tech) | Government College of Engineering | 2019.
+
+Projects * Stock Price Predictor: Used LSTM (Long Short-Term Memory) networks to forecast stock market trends.
+Customer Segmentation: Implemented K-Means clustering to group customers based on purchasing behavior.	

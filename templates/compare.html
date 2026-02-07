@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare with Job - Resume Intelligence Engine</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 0;
+        }
+        .compare-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        textarea {
+            border-radius: 15px;
+            resize: vertical;
+        }
+        .score-display {
+            font-size: 64px;
+            font-weight: bold;
+        }
+        .result-box {
+            border: 3px solid #667eea;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+        .info-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="compare-card">
+                    <h2 class="text-center mb-4">
+                        <strong>Compare Resume with Job Description</strong>
+                    </h2>
+                    <p class="text-center text-muted mb-4">
+                        See how well your resume matches job requirements
+                    </p>
+                    
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="alert alert-danger">{{ message }}</div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                    
+                    {% if job_match %}
+                        <!-- Show Results -->
+                        <div class="result-box">
+                            <div class="text-center mb-4">
+                                <div class="score-display 
+                                    {% if job_match.match_percentage >= 70 %}text-success
+                                    {% elif job_match.match_percentage >= 40 %}text-warning
+                                    {% else %}text-danger{% endif %}">
+                                    {{ job_match.match_percentage }}%
+                                </div>
+                                <h4>Job Match Score</h4>
+                                <p class="lead">{{ job_match.recommendation }}</p>
+                            </div>
+                            
+                            <!-- Resume Info -->
+                            <div class="row mb-4">
+                                <div class="col-md-4">
+                                    <div class="info-card text-center">
+                                        <h6 class="text-muted">Career Level</h6>
+                                        <strong class="h5">{{ job_match.career_level|title if job_match.career_level else 'Not specified' }}</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="info-card text-center">
+                                        <h6 class="text-muted">Experience</h6>
+                                        <strong class="h5">{{ job_match.total_years_experience }} years</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="info-card text-center">
+                                        <h6 class="text-muted">Resume Score</h6>
+                                        <strong class="h5">{{ job_match.overall_score }}/100 ({{ job_match.grade }})</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5 class="text-success">Matched Skills</h5>
+                                    {% if job_match.requirements_found %}
+                                        <ul class="list-group">
+                                            {% for req in job_match.requirements_found %}
+                                                <li class="list-group-item list-group-item-success">{{ req }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% else %}
+                                        <p class="text-muted">No specific skills matched</p>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-6">
+                                    <h5 class="text-danger">Missing Skills</h5>
+                                    {% if job_match.requirements_missing %}
+                                        <ul class="list-group">
+                                            {% for req in job_match.requirements_missing %}
+                                                <li class="list-group-item list-group-item-danger">{{ req }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% else %}
+                                        <p class="text-success">No missing skills found!</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                            <!-- Top Skills from Resume -->
+                            {% if job_match.all_skills %}
+                            <div class="mt-4">
+                                <h5>Your Top Skills</h5>
+                                <div class="d-flex flex-wrap gap-2">
+                                    {% for skill in job_match.all_skills %}
+                                        <span class="badge bg-primary">{{ skill }}</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="text-center">
+                            <a href="/compare" class="btn btn-primary btn-lg me-2" 
+                               style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+                                Compare Another Job
+                            </a>
+                        </div>
+                    {% else %}
+                        <!-- Show Form -->
+                        <form method="POST">
+                            <div class="mb-4">
+                                <label class="form-label h5">Resume Text</label>
+                                <textarea name="resume_text" class="form-control" rows="8"
+                                          placeholder="Paste your resume text here...
+John Smith
+Software Engineer with Python and JavaScript experience.
+Skills: Python, React, AWS, Docker, SQL
+
+Experience:
+- Built web apps using Python and React
+- Deployed on AWS cloud infrastructure"></textarea>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="form-label h5">Job Description</label>
+                                <textarea name="job_description" class="form-control" rows="8"
+                                          placeholder="Paste the job description here...
+We are looking for a Python Developer with:
+- Experience with Python and Django
+- Knowledge of React and JavaScript
+- Cloud experience (AWS preferred)
+- SQL database skills"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-lg w-100 text-white"
+                                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+                                Compare Now
+                            </button>
+                        </form>
+                    {% endif %}
+                    
+                    <div class="text-center mt-4">
+                        <a href="/" class="btn btn-outline-secondary">Back to Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

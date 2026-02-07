@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Intelligence Engine</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .hero-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 50px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 15px 0;
+            transition: transform 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        .icon-large {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        .btn-primary-custom {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            padding: 12px 30px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="hero-section text-center">
+                    <h1 class="display-4 mb-4">
+                        <strong>Resume Intelligence Engine</strong>
+                    </h1>
+                    <p class="lead text-muted mb-5">
+                        AI-powered resume analysis for job seekers, recruiters, and career professionals
+                    </p>
+                    
+                    <div class="row mb-5">
+                        <div class="col-md-4">
+                            <div class="feature-card">
+                                <div class="icon-large">📊</div>
+                                <h5>Smart Scoring</h5>
+                                <p class="text-muted">Get detailed quality scores and ATS compatibility analysis</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="feature-card">
+                                <div class="icon-large">🎯</div>
+                                <h5>Job Matching</h5>
+                                <p class="text-muted">Discover matching job roles with skill gap analysis</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="feature-card">
+                                <div class="icon-large">💡</div>
+                                <h5>Smart Insights</h5>
+                                <p class="text-muted">Get actionable tips to improve your resume</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+                        <a href="/upload" class="btn btn-primary-custom btn-lg text-white">
+                            📄 Analyze Resume
+                        </a>
+                        <a href="/quick" class="btn btn-outline-secondary btn-lg">
+                            ⚡ Quick Analyze
+                        </a>
+                        <a href="/compare" class="btn btn-outline-primary btn-lg">
+                            🔍 Compare with Job
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4 text-white">
+                    <p>Supports: PDF, DOCX, TXT formats</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

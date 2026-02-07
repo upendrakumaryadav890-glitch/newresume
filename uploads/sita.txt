@@ -1,0 +1,37 @@
+Name: Sita Raman Role: Data Scientist Location: Coimbatore, TN Email: sita.raman@email.com LinkedIn: linkedin.com/in/sitaraman
+
+SUMMARY: Results-driven Data Scientist with 4 years of professional experience in designing and deploying end-to-end machine learning solutions. Expert in statistical analysis, predictive modeling, and automating complex data pipelines. Proven ability to translate high-level business requirements into technical data strategies that drive growth in operational efficiency.
+
+KNOWLEDGE & TECHNICAL SKILLS:
+
+Programming & Databases: Python (Expert), SQL (Advanced), R, NoSQL (MongoDB, Cassandra).
+
+Machine Learning: Supervised/Unsupervised Learning, Random Forests, Gradient Boosting (XGBoost, LightGBM), Hyperparameter Tuning.
+
+Deep Learning & NLP: TensorFlow, PyTorch, Keras, BERT models, LSTMs, Transformers.
+
+Data Engineering: Apache Spark, Airflow, ETL Pipeline Development, Data Cleaning/Transformation.
+
+Cloud & DevOps: AWS (S3, EC2, SageMaker), Docker, Kubernetes, CI/CD.
+
+Visualization & BI: Tableau, Power BI, Plotly, Seaborn.
+
+Analytical Foundations: Linear Algebra, Bayesian Statistics, Hypothesis Testing, A/B Testing.
+
+PROFESSIONAL EXPERIENCE: Data Scientist | Analytics Hub | Jan 2022 – Present
+
+Led the development of a churn prediction model using Random Forest, resulting in a 12% improvement in customer retention.
+
+Engineered scalable ETL pipelines using Apache Spark to process over 5TB of raw data monthly.
+
+Implemented NLP techniques to categorize over 50,000 customer support tickets, reducing manual sorting time by 80%.
+
+Mentored junior analysts and established best practices for code reviews and documentation in Git.
+
+Data Analyst Intern | Insights Data Lab | June 2020 – Dec 2021
+
+Performed Exploratory Data Analysis (EDA) on retail datasets to identify purchasing trends.
+
+Cleaned and pre-processed messy datasets using Pandas, handling missing values and outliers for 100k+ records.
+
+EDUCATION: B.Tech in Computer Science | Amrita University | 2020

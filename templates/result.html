@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results - Resume Intelligence Engine</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 30px 0;
+        }
+        .result-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            border: 8px solid;
+        }
+        .grade-A { border-color: #28a745; }
+        .grade-B { border-color: #17a2b8; }
+        .grade-C { border-color: #ffc107; }
+        .grade-D { border-color: #dc3545; }
+        .score-value {
+            font-size: 48px;
+            font-weight: bold;
+        }
+        .score-label {
+            font-size: 14px;
+            color: #6c757d;
+        }
+        .section-header {
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .skill-badge {
+            margin: 5px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        .job-card {
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+        .job-card:hover {
+            border-color: #667eea;
+            transform: translateX(5px);
+        }
+        .progress-custom {
+            height: 25px;
+            border-radius: 15px;
+        }
+        .strength-icon { color: #28a745; font-size: 20px; }
+        .tip-icon { color: #17a2b8; font-size: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="result-card">
+                    <h2 class="text-center mb-4">
+                        <strong>Resume Analysis Report</strong>
+                    </h2>
+                    <p class="text-center text-muted">Analyzed: {{ filename }}</p>
+                    
+                    <!-- Overall Score -->
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <div class="score-circle grade-{{ result.resume_score.grade[0:1] }}">
+                                <span class="score-value">{{ result.resume_score.overall_score }}</span>
+                                <span class="score-label">/ 100</span>
+                            </div>
+                            <h3 class="text-center mt-3">Grade: {{ result.resume_score.grade }}</h3>
+                        </div>
+                        <div class="col-md-8">
+                            <h5 class="section-header">Score Breakdown</h5>
+                            <div class="mb-2">
+                                <label>Skill Relevance</label>
+                                <div class="progress progress-custom">
+                                    <div class="progress-bar" style="width: {{ result.resume_score.breakdown.skill_relevance }}%">
+                                        {{ result.resume_score.breakdown.skill_relevance }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <label>Experience Clarity</label>
+                                <div class="progress progress-custom">
+                                    <div class="progress-bar bg-info" style="width: {{ result.resume_score.breakdown.experience_clarity }}%">
+                                        {{ result.resume_score.breakdown.experience_clarity }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <label>Keyword Optimization</label>
+                                <div class="progress progress-custom">
+                                    <div class="progress-bar bg-warning" style="width: {{ result.resume_score.breakdown.keyword_optimization }}%">
+                                        {{ result.resume_score.breakdown.keyword_optimization }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <label>Completeness</label>
+                                <div class="progress progress-custom">
+                                    <div class="progress-bar bg-success" style="width: {{ result.resume_score.breakdown.completeness }}%">
+                                        {{ result.resume_score.breakdown.completeness }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Basic Info -->
+                <div class="result-card">
+                    <h4 class="section-header">Candidate Profile</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Name:</strong> {{ result.basic_info.name or 'Not specified' }}</p>
+                            <p><strong>Email:</strong> {{ result.basic_info.email or 'Not specified' }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Career Level:</strong> {{ result.experience_profile.career_level.title() }}</p>
+                            <p><strong>Experience:</strong> {{ result.experience_profile.total_years_experience }} years</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Skills -->
+                <div class="result-card">
+                    <h4 class="section-header">Skills Profile</h4>
+                    <p><strong>Total Skills:</strong> {{ result.skill_profile.total_skills_count }}</p>
+                    
+                    <h6 class="mt-3">Primary Skills:</h6>
+                    <div>
+                        {% for skill in result.skill_profile.primary_skills[:10] %}
+                            <span class="badge bg-primary skill-badge">{{ skill.skill }} ({{ skill.category }})</span>
+                        {% endfor %}
+                    </div>
+                    
+                    <h6 class="mt-3">Secondary Skills:</h6>
+                    <div>
+                        {% for skill in result.skill_profile.secondary_skills[:10] %}
+                            <span class="badge bg-secondary skill-badge">{{ skill.skill }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <!-- Job Recommendations -->
+                <div class="result-card">
+                    <h4 class="section-header">Job Recommendations</h4>
+                    {% for job in result.job_recommendations[:5] %}
+                        <div class="job-card">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0">{{ job.title }}</h5>
+                                <span class="badge bg-success" style="font-size: 16px;">
+                                    {{ job.skill_match_percentage }}% Match
+                                </span>
+                            </div>
+                            {% if job.why_fits %}
+                                <p class="text-muted mt-2">{{ job.why_fits[0] }}</p>
+                            {% endif %}
+                            {% if job.missing_critical_skills %}
+                                <small class="text-danger">Missing: {{ job.missing_critical_skills|join(', ') }}</small>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+                
+                <!-- Strengths & Tips -->
+                <div class="result-card">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4 class="section-header">Strengths</h4>
+                            <ul class="list-unstyled">
+                                {% for strength in result.resume_score.strengths %}
+                                    <li class="mb-2"><span class="strength-icon">O</span> {{ strength }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="section-header">Improvement Tips</h4>
+                            <ul class="list-unstyled">
+                                {% for tip in result.resume_score.improvement_tips[:5] %}
+                                    <li class="mb-2"><span class="tip-icon">-</span> {{ tip }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <a href="/" class="btn btn-primary-custom btn-lg text-white me-2"
+                       style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+                        Analyze Another
+                    </a>
+                    <a href="/compare" class="btn btn-outline-primary btn-lg">
+                        Compare with Job
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
